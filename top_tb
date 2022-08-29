@@ -1,0 +1,29 @@
+module top_tb(); // sin entradas ni salidas
+  reg data, clk, reset; // como cables, "entradas"
+  // recuerdan su valor, como los "PUSH"
+  wire out; // como “salidas”
+  //como los "LEDS"
+
+initial begin // Simulacion de entrada
+    #20 reset = 1'b1; // 10 unidades de tiempo después
+  end
+//FFD_R u0 d0 (data, clk, reset, out); //flip flop con variables
+FFL_D u0 (data, clk, reset, out); //flip flop con variables
+LCH_D u1 (data, clk, reset, out); //flip flop con variables
+initial begin // Simulacion de entradas
+  data = 1'b0; clk = 1'b0; reset = 1'b0; //todos están a "0", empiezan en "0"
+  #9 data = 1'b1; // 10 unidades de tiempo después
+  #13 data = 1'b0; // 5 unidades de tiempo después "5+10"
+  #12 data = 1'b1; // 9 unidades de tiempo después "15+9"
+  #10 ;
+  $finish;// terminar la simulación
+end
+
+initial begin // Guarda los datos de timing, no es tan necesario
+  $dumpfile ("top_tb.vcd" ); // archivo, otro nuevo tipo de archivo
+  $dumpvars (0, top_tb); // modulos, envía el módulo a un archivo vdc
+end
+
+always // simula una señal de reloj
+  #5 clk = ~clk;  //Cada 3 unidades de tiempo
+endmodule
