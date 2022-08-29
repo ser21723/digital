@@ -1,0 +1,9 @@
+module FFD_E( input D, clk, en, output reg Q);
+
+always @(posedge clk) //simpre que flanco "1"
+  begin
+    if (en)     //si rst es "1"
+      Q <= D; //la salida pasa a D
+//    else         //sino no cambia
+  end
+endmodule
