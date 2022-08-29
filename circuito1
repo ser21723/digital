@@ -1,10 +1,6 @@
-module FFD_R( input D, clk, rst, output reg Q);
+module 
 
-always @(posedge clk) //simpre que flanco "1"
-  begin
-    if (rst)     //si rst es "1"
-      Q <= 1'b0; //la salida es 1 bit en 0
-    else         //sino
-      Q <= D;   // actualizar Q
+
+
   end
 endmodule
